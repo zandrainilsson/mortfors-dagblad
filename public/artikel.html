@@ -1,0 +1,39 @@
+% include("public/_header.html")
+        <p>{{ artikel[2] }}</p>
+
+        <h1>{{ artikel[0] }}</h1>
+        <p>{{ artikel[4] }}</p>
+        <p>
+            Av:
+            % for i in journalist:
+                {{ i[0] }}  
+            % end
+        </p>
+
+        % for i in bild:
+            <img src="/static/{{ i[0] }}" alt="{{ i[1] }}" height="300">
+            <p><em>{{ i[2]}}</em></p>
+         % end
+
+        <p>{{ artikel[1] }}</p>
+
+        <form action="/kommentar" method="POST">
+            <input type="hidden" value="{{ artikel[3] }}" name="id" id="id">
+                <label for="signatur">Signatur:</label>
+                <input type="text" class="form-control" id="signatur" name="signatur" required>
+                <label for="kommentar">Kommentar:</label>
+                <textarea class="form-control" id="kommentar" name="kommentar" required></textarea>
+            <button type="submit" class="btn btn-secondary">Spara</button>
+        </form>
+
+        % for i in kommentarer:
+            <p><strong>Signatur: </strong>{{ i[0] }}</p>
+            <p>{{ i[1] }}</p>
+            <p><em>{{ i[2] }} {{ i[3] }}</em></p>
+            <hr>
+        % end
+
+        <a class="btn btn-outline-dark" href="/" role="button">Ta mig tillbaka</a>
+        
+        
+% include("public/_footer.html")

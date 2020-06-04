@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Mörtfors Dagblad</title>
+        <link rel="shortcut icon" href="/static/metro-39112_1280.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link href="/static/style.css" rel="stylesheet" type="text/css" media="screen">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/">
+                <img src="/static/metro-39112_1280.png" width="30" height="30" alt="logga">
+                Mörtfors Dagblad
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="/admin" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
+                            Admin startsida
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="/admin/staff" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
+                            Översikt anställda
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <main>
+            <div class="container" id="huvud">
+                <div class="row">
+                    <div class="col-sm">
+
+        <h3>Kommentarer för artikeln "{{ artikel[1] }}"</h3>
+
+        <div class="list-group">
+            % for i in kommentarer:
+                <div class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{ i[0] }}</h5>
+                        <small>{{ i[2] }} {{ i[3] }}</small>
+                    </div>
+                    <p class="mb-1">{{ i[1] }}</p>
+                    <form action="/delete" method="POST">
+                        <input type="hidden" name="id" value="{{ i[4] }}">
+                        <input type="hidden" name="artikelid" value="{{ artikel[0] }}">
+                        <button type="submit" class="btn btn-outline-secondary" id="x" name="delete" value="x">Ta bort kommentar</button>
+                    </form>
+                </div>
+            % end
+        </div>
+        <a class="btn btn-outline-dark" href="/admin" role="button">Ta mig tillbaka</a>
+
+% include("public/_footer.html")

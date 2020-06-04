@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Mörtfors Dagblad</title>
+        <link rel="shortcut icon" href="/static/metro-39112_1280.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link href="/static/style.css" rel="stylesheet" type="text/css" media="screen">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/">
+                <img src="/static/metro-39112_640.png" width="30" height="30" alt="logga">
+                Mörtfors Dagblad
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="/admin/staff" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
+                            Översikt anställda
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <main>
+
+                <div class="container">
+                    <h1>Välkommen till admin för Mörtfors Dagblad</h1>
+                    <div class="row justify-content-md-center">
+                        <div class="col">
+                            <h3>Skapa artikel</h3>
+                            <form action="/create" method="POST" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="titel">Titel</label>
+                                    <input type="text" id="titel" name="titel" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ingress">Ingress</label>
+                                    <textarea id="ingress" name="ingress" class="form-control" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="artikel">Artikel</label>
+                                    <textarea id="artikel" name="artikel" class="form-control" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="journalist">Journalist</label>
+                                    <select name="journalist" class="form-control" required>
+                                        <option value="--">--</option>
+                                            % for i in journalist:
+                                                <option value="{{ i[0] }}">{{ i[0] }}</option>
+                                            % end
+                                    </select>        
+                                </div>
+                                <div class="form-group">
+                                    <label for="bild">Ladda upp bild</label>
+                                    <input type="file" id="bild" name="bild" accept="image/*" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="bildtext">Bildtext för artikeln</label>
+                                    <input type="text" id="bildtext" name="bildtext" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="alttext">AltText (visas om fel på bild)</label>
+                                    <input type="text" id="alttext" name="alttext" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="huvudkategori">Huvudkategori</label>
+                                    <input type="text" id="huvudkategori" name="huvudkategori" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="underkategori">Underkategori</label>
+                                    <input type="text" id="underkategori" name="underkategori" class="form-control" required>
+                                </div>
+                                <button type="submit" class="btn btn-outline-dark">Spara</button>
+                            </form>
+                        </div>
+                        <div class="col-md-auto">
+                            <h3>Översikt av kommentarer</h3>
+                            <div class="list-group">
+                                % for i in articles:
+                                    <a href="/admin_comments/{{ i[0] }}" class="list-group-item list-group-item-action">{{ i[0] }}</a>
+                                %end
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                % include("public/_footer.html")

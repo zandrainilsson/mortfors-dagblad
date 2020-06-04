@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Mörtfors Dagblad</title>
+        <link rel="shortcut icon" href="/static/metro-39112_1280.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link href="/static/style.css" rel="stylesheet" type="text/css" media="screen">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/">
+                <img src="/static/metro-39112_1280.png" width="30" height="30" alt="logga">
+                Mörtfors Dagblad
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="/admin" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
+                            Admin startsida
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <main>
+            <div class="container" id="huvud">
+                <div class="row">
+                    <div class="col-sm">
+                        <h3>Översikt anställda</h3>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Personnummer</th>
+                                    <th scope="col">Namn</th>
+                                    <th scope="col">Inrikning</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            % for i in journalister:
+                                <tr>
+                                    <td>{{ i[0] }}</td>
+                                    <td>{{ i[1] }}</td>
+                                    <td>{{ i[2] }}</td>
+                                </tr>
+                            % end
+                            </tbody>
+                        </table>
+                        <h3>Lägg till ny anställd</h3>
+                        <form action="/create-staff" method="POST" >
+                            <div class="form-group">
+                                <label for="personnummer">Personnummer</label>
+                                <input type="text" class="form-control" id="personnummer" name="personnummer" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="namn">För- och efternamn</label>
+                                <input type="text" class="form-control" id="namn" name="namn" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="inriktning">Inrikning</label>
+                                <input type="text" class="form-control" id="inriktning" name="inriktning" required>
+                                <small class="form-text text-muted">Exempelvis 'Kultur' eller 'Sport'</small>
+                            </div>
+                            <button type="submit" class="btn btn-outline-dark">Spara</button>
+                        </form>
+% include("public/_footer.html")

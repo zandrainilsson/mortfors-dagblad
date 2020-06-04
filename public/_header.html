@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Mörtfors Dagblad</title>
+        <link rel="shortcut icon" href="/static/metro-39112_1280.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link href="/static/style.css" rel="stylesheet" type="text/css" media="screen">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/">
+                <img src="/static/metro-39112_640.png" width="30" height="30" alt="logga">
+                Mörtfors Dagblad
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    % for i in hcat:
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="/category/{{ i[0] }}" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
+                                {{ i[0] }}
+                            </a>
+                        </li>
+                    % end
+                </ul>
+            </div>
+            <form class="form-inline" action="/login" method="POST">
+                <input class="form-control mr-sm-2" type="text" placeholder="Användarnamn" id="user" name="user" aria-label="Användarnamn">
+                <input class="form-control mr-sm-2" type="password" placeholder="Lösenord" id="pwd" name="pwd" aria-label="pwd">
+                <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Logga in</button>
+            </form>
+        </nav>
+        <main>
+            <div class="container" id="huvud">
+                <div class="row">
+                    <div class="col-sm">

@@ -1,0 +1,10 @@
+% include("public/_header.html")
+        <h1>Senaste nyheterna</h1>
+        % for i in articles:
+            <h2><a href="/artikel/{{ i[0] }}" id="artlänk">{{ i[0] }}</a></h3>
+            <h6>{{ i[2] }}</h6>
+            <p>{{ i[1] }}</p>
+            <hr>
+        % end
+
+% include("public/_footer.html")
