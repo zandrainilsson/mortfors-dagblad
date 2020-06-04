@@ -8,5 +8,6 @@ To be able to run the project you will need [Python](https://www.python.org/down
 
 ## Installation
 1. `$ git clone https://github.com/zandrainilsson/mortfors-dagblad.git`
-2. Run the file `m_dagblad.py`
-3. The application should now be up and running on [localhost:8081](http://localhost:8081)!
+2. `$ cd mortfors-dagblad`
+3. Run the file `m_dagblad.py`
+4. The application should now be up and running on [localhost:8081](http://localhost:8081)!
