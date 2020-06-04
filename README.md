@@ -1,2 +1,2 @@
-# m-rtfors-dagblad
+# Mörtfors Dagblad
 Database newspaper project in PostgreSQL 
